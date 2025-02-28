@@ -31,7 +31,6 @@ model = genai.GenerativeModel('gemini-1.5-flash')
 
 def find_closest_question(user_query, vectorizer, question_vectors, df):
     query_vector = vectorizer.transform([user_query.lower()])
-    similarities=cosine_simiarity
     similarities = cosine_similarity(query_vector, question_vectors).flatten()
     best_match_index = similarities.argmax()
     best_match_score = similarities[best_match_index]
@@ -60,7 +59,7 @@ if prompt := st.chat_input("Type your question here..."):
     else:
         try:
             response = model.generate_content(
-                f"You are a helpful and knowledgeable chatbot for SVCEW College. Provide a detailed and specific answer to the following question: {prompt}"
+                f"You are a helpful and knowledgeable chatbot for SVECW College. Provide a detailed and specific answer to the following question: {prompt}"
             )
             st.session_state.messages.append({"role": "assistant", "content": response.text})
             with st.chat_message("assistant"):
